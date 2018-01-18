@@ -5,6 +5,9 @@ public class SalesLineItem {
     private Product prod;
 
     public SalesLineItem(Product prod, int quantity) {
+        if (quantity <= 0)
+            throw new IllegalArgumentException("SalesLineItem quantity must be positive.");
+
         this.prod = prod;
         this.quantity = quantity;
     }

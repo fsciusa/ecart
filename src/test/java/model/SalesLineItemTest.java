@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SalesLineItemTest {
 
@@ -17,6 +18,14 @@ public class SalesLineItemTest {
         Product prod = new ProductStub(1,2000,"Product");
         SalesLineItem item = new SalesLineItem(prod, 3);
         assertEquals(6000, item.getSubtotal(), 0.0001);
+
+    }
+
+    @Test
+    public void testThrowException() {
+        Product prod = new ProductStub(1,2000,"Product");
+        assertThrows(IllegalArgumentException.class,
+                () -> { new SalesLineItem(prod, 0); } );
 
     }
 
