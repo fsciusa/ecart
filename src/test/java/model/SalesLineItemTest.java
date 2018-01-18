@@ -20,14 +20,14 @@ public class SalesLineItemTest {
         assertEquals(6000, item.getSubtotal(), 0.0001);
 
     }
-
-    @Test
-    public void testThrowException() {
-        Product prod = new ProductStub(1,2000,"Product");
-        assertThrows(IllegalArgumentException.class,
-                () -> { new SalesLineItem(prod, 0); } );
-
-    }
+//
+//    @Test
+//    public void testThrowException() {
+//        Product prod = new ProductStub(1,2000,"Product");
+//        assertThrows(IllegalArgumentException.class,
+//                () -> { new SalesLineItem(prod, 0); } );
+//
+//    }
 
     class ProductStub extends Product {
         public ProductStub(int id, double price, String name) {

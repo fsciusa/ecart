@@ -14,5 +14,5 @@ public class Sale {
         date = LocalDateTime.now();
         isComplete = false;
     }
-    
+
 }

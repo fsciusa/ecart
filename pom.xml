@@ -7,22 +7,15 @@
     <groupId>csku</groupId>
     <artifactId>ecart</artifactId>
     <version>1.0-SNAPSHOT</version>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.9</source>
-                    <target>1.9</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
+    <packaging>jar</packaging>
+
+    <name>Ecart</name>
+    <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.9</java.version>
+        <junit.version>5.1.0-M1</junit.version>
     </properties>
 
     <dependencies>
@@ -33,7 +26,24 @@
             <version>5.1.0-M1</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>4.12.3</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.fitnesse/fitnesse -->
         <dependency>
             <groupId>org.fitnesse</groupId>
@@ -43,4 +53,58 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <finalName>ecart</finalName>
+
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.0.0-M4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>5.0.0-M4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <!-- DO NOT include log4j.properties file in your Jar -->
+                    <excludes>
+                        <exclude>**/log4j.properties</exclude>
+                    </excludes>
+                    <archive>
+                        <manifest>
+                            <!-- Jar file entry point -->
+                            <mainClass>model.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>
